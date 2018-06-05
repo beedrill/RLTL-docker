@@ -42,12 +42,9 @@ RUN cd cmake-3.11.3 && cmake . && cmake --build . --config Release --target inst
 RUN cd sumo && mkdir build27 && cd build27 && cmake -DPython_ADDITIONAL_VERSIONS=2.7 -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target install_pylibsumo --config Release
 
 #install sumo
-RUN add-apt-repository ppa:sumo/stable
+RUN add-apt-repository -y ppa:sumo/stable
 RUN apt-get update
 RUN apt-get install -y sumo sumo-tools sumo-doc
-
-#install tensorflow
-RUN pip install --upgrade tensorflow
 
 #install all requirement
 RUN mkdir /data
