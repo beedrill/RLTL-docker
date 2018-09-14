@@ -34,6 +34,10 @@ RUN apt-get install -y libfox-1.6-0 libfox-1.6-dev
 WORKDIR /home
 # RUN git clone https://github.com/eclipse/sumo.git
 RUN git clone -b libsumo_close https://github.com/bstriner/sumo-1.git sumo
+RUN apt-get install wget
+RUN wget https://cmake.org/files/v3.11/cmake-3.11.3.tar.gz
+RUN tar xzf cmake-3.11.3.tar.gz
+RUN cd cmake-3.11.3 && cmake . && cmake --build . --config Release --target install
 RUN cd sumo && mkdir build36 && cd build36 && cmake -DPython_ADDITIONAL_VERSIONS=3.6 -DCMAKE_BUILD_TYPE=Release .. && cmake --build . --target install_pylibsumo --config Release
 
 #install sumo
@@ -46,5 +50,5 @@ RUN apt-get install -y sumo sumo-tools sumo-doc
 RUN mkdir /data
 COPY requirements.txt /data
 WORKDIR /data
-RUN pip install -U -r requirements.txt
+RUN pip3 install -U -r requirements.txt
 WORKDIR /home
