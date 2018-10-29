@@ -10,6 +10,7 @@ RUN apt update
 RUN apt install -y libsm6 libxext6
 RUN apt install -y libopenmpi-dev
 RUN pip3 install --upgrade tensorflow
+RUN pip3 install --upgrade opencv-python
 
 #install all requirement
 RUN mkdir /data
